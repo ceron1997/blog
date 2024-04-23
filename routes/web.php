@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [PostController::class,'index'] )->name('post.index');
+Route::get('posts/{post}', [PostController::class,'show'] )->name('posts.show');
+Route::get('category/{category}', [PostController::class,'category'] )->name('posts.category');
+Route::get('tags/{tag}', [PostController::class,'tag'] )->name('posts.tag');
 
 Route::middleware([
     'auth:sanctum',
@@ -16,7 +19,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('home');
 

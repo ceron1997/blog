@@ -30,7 +30,7 @@
                 </button>
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <a href="{{ route('home') }}" class="flex flex-shrink-0 items-center">
+                <a href="{{ route('post.index') }}" class="flex flex-shrink-0 items-center">
                     <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
                         alt="Your Company">
                 </a>
@@ -40,7 +40,7 @@
                         {{-- <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
                             aria-current="page">Dashboard</a> --}}
                         @foreach ($categories as $category)
-                            <a href="#"
+                            <a href="{{route('posts.category', $category)}}"
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">{{$category->name}}</a>
                         @endforeach
                     </div>
@@ -119,7 +119,7 @@
                 aria-current="page">Dashboard</a> --}}
            
             @foreach($categories as $category)
-            <a href="#"
+            <a href="{{route('posts.category', $category)}}"
             class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">{{$category->name}}</a>
   
             @endforeach
