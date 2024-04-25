@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\CategoryController;
 
 
 Route::get('/', [PostController::class,'index'] )->name('post.index');
@@ -23,3 +25,8 @@ Route::middleware([
 //     return view('welcome');
 // })->name('home');
 
+
+//rutas para administracion ************************************************************************
+Route::get('admin/', [HomeController::class,'index'] )->name('admin.index');
+Route::resource('categories',CategoryController::class)->names('admin.categories');
+// php artisan route:list --name=admin.categories
