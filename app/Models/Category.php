@@ -9,9 +9,9 @@ class Category extends Model
 {
     use HasFactory;
 
-       //relacion uno a muchos 
-    public function post(){
+    
+// relacion uno a muchos 
+    public function posts(){
         return $this->hasMany(Post::class);
     }
-
 }

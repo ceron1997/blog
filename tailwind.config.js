@@ -20,8 +20,8 @@ export default {
     },
 
     plugins: [forms, typography],
+    corePlugins:{
 
-    // corePlugins: {
-    //     container: false,
-    // }
+        container:false,
+    }
 };

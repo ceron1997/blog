@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Http\Request;
+
 
 class CategoryController extends Controller
 {
@@ -13,9 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-
-        $categories = Category::all();
-        return view('admin.categories.index', compact('categories'));
+        $categories=Category::all();
+        return view('admin.categories.index',compact('categories'));
     }
 
     /**
@@ -31,7 +31,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('admin.categories.store');
     }
 
     /**
@@ -39,7 +39,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('admin.categories.show', compact('category'));
+        return view('admin.categories.show',compact('category'));
     }
 
     /**
@@ -47,7 +47,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.categories.edit', compact('category'));
+        return view('admin.categories.edit',compact('category'));
     }
 
     /**
