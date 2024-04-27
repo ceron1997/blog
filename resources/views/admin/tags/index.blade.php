@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Lista de Categorias</h1>
+    <h1>Lista de Tags</h1>
 @stop
 
 @section('content')
@@ -14,7 +14,7 @@
     @endif
     <div class="card">
         <div class="card-header">
-            <a class="btn btn-secondary" href="{{ route('admin.categories.create') }}">Agregar Categoria</a>
+            <a class="btn btn-secondary" href="{{ route('admin.tags.create') }}">Agregar Categoria</a>
         </div>
         <div class="card-body">
             <table class="table table-striped">
@@ -26,14 +26,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $category)
+                    @foreach ($tags as $tag)
                         <tr>
-                            <td>{{ $category->id }}</td>
-                            <td>{{ $category->name }}</td>
+                            <td>{{ $tag->id }}</td>
+                            <td>{{ $tag->name }}</td>
                             <td width="10px"> <a class="btn btn-primary btn-sm"
-                                    href="{{ route('admin.categories.edit', $category) }}">Editar</a></td>
+                                    href="{{ route('admin.tags.edit', $tag) }}">Editar</a></td>
                             <td width="10px">
-                                <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
+                                <form action="{{ route('admin.tags.destroy', $tag) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
@@ -46,15 +46,4 @@
             </table>
         </div>
     </div>
-@stop
-
-@section('css')
-    {{-- Add here extra stylesheets --}}
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-@stop
-
-@section('js')
-    <script>
-        console.log("Hi, I'm using the Laravel-AdminLTE package!");
-    </script>
 @stop
