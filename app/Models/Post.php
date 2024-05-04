@@ -7,27 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    protected $guarded = ['id', 'created_at', 'updated_at',]; // campos a evitar ser llenados por asignacion masiva 
     use HasFactory;
 
     //relacion uno a muchos inversa 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
-
     }
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
     //relacion muchos a muchos
 
-    public function tags(){
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class);
     }
 
     //relacion uno a uno polimorfica
-    public function image(){
-        return $this->morphOne(Image::class,'imageable');
-
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
     }
 }
