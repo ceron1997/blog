@@ -338,7 +338,7 @@ return [
             'icon' => 'fas fa-fw fa-clipboard',
         ],
         [
-            'text' => 'change_password',
+            'text' => 'Crear un Post',
             'route' => 'admin.posts.create',
             'icon' => 'fas fa-fw fa-file',
         ],

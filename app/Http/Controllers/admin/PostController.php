@@ -69,6 +69,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize("author", $post);
         $categories =  Category::pluck('name', 'id');
         // return $categories;
 
@@ -81,6 +82,7 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        $this->authorize("author", $post);
         if ($request->file('file')) {
             $url = Storage::put('posts', $request->file('file'));
             if ($post->image) {
@@ -95,7 +97,7 @@ class PostController extends Controller
             }
         }
         if ($request->tags) {
-            $post->tags()->attach($request->tags);
+            $post->tags()->sync($request->tags);
         }
         return redirect()->route('admin.posts.edit', $post)->with('info', 'La post ha sido actualizada');
     }
@@ -105,7 +107,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-
+        $this->authorize("author", $post);
         $post->delete();
         return redirect()->route('admin.posts.index', $post)->with('info', 'La post ha sido eliminada');
     }

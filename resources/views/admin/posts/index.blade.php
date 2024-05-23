@@ -4,12 +4,17 @@
 
 @section('content_header')
 
-<a href="{{route('admin.posts.create')}}" class="btn btn-secondary btn-sm float-right" >Nuevo Post</a>
+    <a href="{{ route('admin.posts.create') }}" class="btn btn-secondary btn-sm float-right">Nuevo Post</a>
     <h1>Listado de Post</h1>
 @stop
 
 @section('content')
-   @livewire('admin.PostIndex')
+    @if (session('info'))
+        <div class="alert alert-success">
+            <strong>{{ session('info') }}</strong>
+        </div>
+    @endif
+    @livewire('admin.PostIndex')
 @stop
 
 @section('css')
@@ -18,5 +23,7 @@
 @stop
 
 @section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+    <script>
+        console.log("Hi, I'm using the Laravel-AdminLTE package!");
+    </script>
 @stop
