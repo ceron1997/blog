@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+
 class UserSeeder extends Seeder
 {
     /**
@@ -18,7 +19,7 @@ class UserSeeder extends Seeder
             'name'=>'noe',
             'email'=>'noeceron43@gmail.com',
             'password'=>bcrypt('123456789')
-        ]);
-       User::factory(9)->create();
+        ])->assignRole('Admin');
+       User::factory(50)->create();
     }
 }

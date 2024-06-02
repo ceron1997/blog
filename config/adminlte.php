@@ -318,6 +318,12 @@ return [
             'icon' => 'fa-fw  fa-solid fa-gauge',
      
         ],
+        [
+            'text' => 'Usuarios',
+            'route' => 'admin.users.index',
+            'icon' => 'fa-solid fa-gauge',
+        ],
+      
         ['header' => 'ADMINISTRADOR'],
         [
             'text' => 'Categorias',
