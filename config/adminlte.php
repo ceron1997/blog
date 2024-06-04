@@ -306,7 +306,7 @@ return [
         ],
 
         // Sidebar items:
- 
+
         [
             'text' => 'blog',
             'url' => 'admin/blog',
@@ -314,41 +314,51 @@ return [
         ],
         [
             'text' => 'Dashboard',
-            'url' => 'admin',
+            'route' => 'admin.index',
             'icon' => 'fa-fw  fa-solid fa-gauge',
-     
+            'can' => 'admin.home'
+
         ],
         [
             'text' => 'Usuarios',
             'route' => 'admin.users.index',
             'icon' => 'fa-solid fa-gauge',
+            'can' => 'admin.users.index'
         ],
-      
-        ['header' => 'ADMINISTRADOR'],
+
+        [
+            'header' => 'ADMINISTRADOR',
+            'can' => 'admin.categories.index'
+
+        ],
         [
             'text' => 'Categorias',
             'route' => 'admin.categories.index',
             'icon' => 'fab fa-fw fa-buffer',
-            'active' => ['admin/categories*']
+            'active' => ['admin/categories*'],
+            'can' => 'admin.categories.index'
         ],
         [
             'text' => 'Tags',
             'route' => 'admin.tags.index',
             'icon' => 'far fa-fw fa-bookmark',
-            'active' => ['admin/tags*']
+            'active' => ['admin/tags*'],
+            'can' => 'admin.tags.index'
         ],
         ['header' => 'OPCIONES DE BLOG'],
         [
             'text' => 'Lista de Post',
             'route' => 'admin.posts.index',
             'icon' => 'fas fa-fw fa-clipboard',
+            'can' => 'admin.posts.index'
         ],
         [
             'text' => 'Crear un Post',
             'route' => 'admin.posts.create',
             'icon' => 'fas fa-fw fa-file',
+            'can' => 'admin.posts.create'
         ],
-      
+
     ],
 
     /*

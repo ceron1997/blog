@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        // este es un midleware para la proteccion de rutas
+        $this->middleware('can:admin.categories.index')->only('index');
+        $this->middleware('can:admin.categories.create')->only('create', 'store');
+        $this->middleware('can:admin.categories.edit')->only('edit', 'update');
+        $this->middleware('can:admin.categories.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -39,13 +47,6 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.edit', $category)->with('info', 'La categoria ha sido creada');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
-    {
-        return view('admin.categories.show', compact('category'));
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -74,8 +75,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-       $category->delete();
-       return redirect()->route('admin.categories.index', $category)->with('info', 'La categoria ha sido eliminada');
-  
+        $category->delete();
+        return redirect()->route('admin.categories.index', $category)->with('info', 'La categoria ha sido eliminada');
     }
 }

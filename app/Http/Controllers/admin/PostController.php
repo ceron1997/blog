@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Storage; // para almacenar imagenes
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        // este es un midleware para la proteccion de rutas
+        $this->middleware('can:admin.posts.index')->only('index');
+        $this->middleware('can:admin.posts.create')->only('create', 'store');
+        $this->middleware('can:admin.posts.edit')->only('edit', 'update');
+        $this->middleware('can:admin.posts.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -55,14 +65,6 @@ class PostController extends Controller
         return redirect()->route('admin.posts.edit', $post)->with('info', 'La post ha sido creada');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Post $post)
-    {
-
-        return view('admin.posts.show', compact('post'));
-    }
 
     /**
      * Show the form for editing the specified resource.
