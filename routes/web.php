@@ -22,12 +22,11 @@ Route::get('category/{category}',[PostController::class,"category"])->name('post
 
 Route::get("tag/{tag}",[PostController::class,"tag"])->name("posts.tag");
 
+// este es el encargado de la redireccion despues de log in exitoso
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard',[PostController::class,'index'])->name('dashboard');
 });

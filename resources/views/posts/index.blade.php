@@ -6,7 +6,8 @@
                     style="background-image: url( @if ($post->image) {{ 'http://127.0.0.1/blog/public' . Storage::url($post->image->url) }}
                     @else 'https://media.istockphoto.com/id/181928587/es/foto/volc%C3%A1n-monte-bromo-java-oriental-indonesia-surabuya.jpg?s=1024x1024&w=is&k=20&c=hczOJMZn1VPVNt__27CSrHuGNfTvy5yqSiHq9bz4GgU=' @endif  )">
                     <div class="w-full h-full px-8 flex flex-col justify-center">
-
+                        {{-- segun esto ayuda a que tailwind tome en cuenta estas clases y no las elimine en un proceso llamado purga --}}
+                        <!-- bg-gray-600 bg-red-600 bg-green-600 bg-yellow-600 bg-blue-600 bg-indigo-600 -->
                         <div>
                             @foreach ($post->tags as $tag)
                                 <a href="{{ route('posts.tag', $tag) }}"

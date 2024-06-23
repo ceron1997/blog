@@ -19,6 +19,7 @@ class PostPolicy
 
     public function published(?User $user, Post $post)
     {
+        // return true; 
         if ($post->status == 2) {
             return true;
         }else{

@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Tag;
 
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage; // para almacenar imagenes
 
 class PostController extends Controller
@@ -54,11 +55,14 @@ class PostController extends Controller
         //   Storage::put('posts', $request->file('file'));
         $post = Post::create($request->all());
         if ($request->file('file')) {
-            $url =  Storage::put('posts', $request->file('file'));
+            $url =  Storage::put('public/post', $request->file('file'));
             $post->image()->create([
                 'url' => $url
             ]);
         }
+
+        Cache::flush();//borra todas las variables almacenadas en cache 
+
         if ($request->tags) {
             $post->tags()->attach($request->tags);
         }
@@ -71,7 +75,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $this->authorize("author", $post);
+        $this->authorize("author", $post); // esta es una policy que creamos para verificar si el usuario es el propietario del post 
         $categories =  Category::pluck('name', 'id');
         // return $categories;
 
@@ -86,7 +90,7 @@ class PostController extends Controller
     {
         $this->authorize("author", $post);
         if ($request->file('file')) {
-            $url = Storage::put('posts', $request->file('file'));
+            $url = Storage::put('public/post', $request->file('file'));
             if ($post->image) {
                 Storage::delete($post->image->url);
                 $post->image->update([
@@ -101,6 +105,7 @@ class PostController extends Controller
         if ($request->tags) {
             $post->tags()->sync($request->tags);
         }
+        Cache::flush();//borra todas las variables almacenadas en cache 
         return redirect()->route('admin.posts.edit', $post)->with('info', 'La post ha sido actualizada');
     }
 
@@ -109,8 +114,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $this->authorize("author", $post);
+        $this->authorize("author", $post);//esto es para validar que el usuario tiene este permiso
         $post->delete();
+        Cache::flush();//borra todas las variables almacenadas en cache 
         return redirect()->route('admin.posts.index', $post)->with('info', 'La post ha sido eliminada');
     }
 }

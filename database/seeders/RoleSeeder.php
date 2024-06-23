@@ -15,7 +15,8 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
 
-        // php artisan db:seed --class=RoleSeeder
+        // para ejecutar solo un seeder 
+        // php artisan db:seed --class=RoleSeeder  
 
 
 
